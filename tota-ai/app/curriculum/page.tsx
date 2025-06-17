@@ -48,6 +48,8 @@ const CurriculumContent = () => {
   const [playSound] = useSound('/sounds/explanation.mp3');
 
   useEffect(() => {
+    console.log('Curriculum data:', curriculumData);
+    console.log('Subjects data:', subjectsData);
     setIsClient(true);
     
     if (!searchParams) return;
@@ -66,6 +68,10 @@ const CurriculumContent = () => {
       lessonId: lessonId || undefined
     });
   }, [searchParams]);
+
+  useEffect(() => {
+    console.log('Current selection:', selection);
+  }, [selection]);
 
   const handleChange = (key: keyof SelectionState, value: string) => {
     const newSelection = { ...selection, [key]: value };
