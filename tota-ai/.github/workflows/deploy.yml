@@ -1,1 +1,18 @@
-name: Deploy to Windsurf\non:\n  push:\n    branches: [main]\njobs:\n  deploy:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - run: npm install\n      - run: npm run build\n      - name: Deploy to Windsurf\n        uses: windsurf-actions/deploy@v1\n        with:\n          project-id: ${{ secrets.WINDSURF_PROJECT_ID }}\n          api-key: ${{ secrets.WINDSURF_API_KEY }}
+name: Deploy to Windsurf
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: npm install
+      - run: npm run build
+      - name: Deploy to Windsurf
+        uses: windsurf-actions/deploy@v1
+        with:
+          project-id: ${{ secrets.WINDSURF_PROJECT_ID }}
+          api-key: ${{ secrets.WINDSURF_API_KEY }}
