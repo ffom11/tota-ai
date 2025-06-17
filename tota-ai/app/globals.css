@@ -1,0 +1,82 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* تنسيقات مخصصة للمظهر العام */
+:root {
+  --primary: #4F46E5;
+  --primary-light: #818CF8;
+  --primary-dark: #4338CA;
+  --secondary: #10B981;
+  --accent: #F59E0B;
+  --background: #F8FAFC;
+  --card-bg: #FFFFFF;
+  --text-primary: #1F2937;
+  --text-secondary: #6B7280;
+  --border: #E5E7EB;
+  --success: #10B981;
+  --warning: #F59E0B;
+  --error: #EF4444;
+}
+
+/* تحسينات عامة */
+body {
+  @apply bg-gray-50 text-gray-900;
+  font-family: 'Cairo', sans-serif;
+}
+
+/* بطاقات المواد */
+.subject-card {
+  @apply bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300;
+  border: 1px solid var(--border);
+}
+
+.animate-bounce-fast { animation: bounce 0.7s infinite; }
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+/* bounce-fast تستخدم حركة أعلى (صفحة fun) */
+@keyframes bounce-fast {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-18px); }
+}
+.animate-bounce-fast { animation: bounce-fast 0.7s infinite; }
+.animate-pulse-slow { animation: pulse 3s infinite; }
+@keyframes pulse {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 1; }
+}
+
+/* مؤثرات إضافية من صفحة fun */
+.animate-wiggle { animation: wiggle 0.5s linear; }
+@keyframes wiggle {
+  0% { transform: rotate(-8deg) scale(1.05); }
+  20% { transform: rotate(8deg) scale(1.1); }
+  40% { transform: rotate(-6deg) scale(1.07); }
+  60% { transform: rotate(6deg) scale(1.1); }
+  80% { transform: rotate(-2deg) scale(1.08); }
+  100% { transform: rotate(0deg) scale(1); }
+}
+.animate-fade-in { animation: fadeIn 0.7s cubic-bezier(.39,.575,.565,1) both; }
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(30px); }
+  100% { opacity: 1; transform: none; }
+}
+
+.animate-fade-in-up { animation: fadeInUp 0.7s cubic-bezier(.39,.575,.565,1) both; }
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(40px); }
+  100% { opacity: 1; transform: none; }
+}
+.animate-pop-in { animation: popIn 0.4s cubic-bezier(.39,.575,.565,1) both; }
+@keyframes popIn {
+  0% { opacity: 0; transform: scale(0.7); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+body {
+  font-family: 'Cairo', sans-serif;
+  background-color: #FAF6F0;
+  direction: rtl;
+}

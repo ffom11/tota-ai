@@ -1,0 +1,119 @@
+/* تنسيقات مخصصة للمظهر العام */
+:root {
+  --primary: #4F46E5;
+  --primary-light: #818CF8;
+  --primary-dark: #4338CA;
+  --secondary: #10B981;
+  --accent: #F59E0B;
+  --background: #F8FAFC;
+  --card-bg: #FFFFFF;
+  --text-primary: #1F2937;
+  --text-secondary: #6B7280;
+  --border: #E5E7EB;
+  --success: #10B981;
+  --warning: #F59E0B;
+  --error: #EF4444;
+}
+
+/* تحسينات عامة */
+body {
+  @apply bg-gray-50 text-gray-900;
+  font-family: 'Cairo', sans-serif;
+}
+
+/* بطاقات المواد */
+.subject-card {
+  @apply bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300;
+  border: 1px solid var(--border);
+}
+
+.subject-card:hover {
+  @apply shadow-lg transform -translate-y-1;
+  border-color: var(--primary-light);
+}
+
+/* أزرار */
+.btn-primary {
+  @apply bg-primary hover:bg-primary-dark text-white font-medium py-2 px-6 rounded-lg transition-colors duration-200;
+  box-shadow: 0 4px 6px -1px rgba(79, 70, 229, 0.1), 0 2px 4px -1px rgba(79, 70, 229, 0.06);
+}
+
+.btn-primary:hover {
+  box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.1), 0 4px 6px -2px rgba(79, 70, 229, 0.05);
+}
+
+/* شريط التنقل */
+.nav-link {
+  @apply text-gray-600 hover:text-primary px-3 py-2 rounded-md text-sm font-medium transition-colors;
+}
+
+.nav-link.active {
+  @apply bg-primary/10 text-primary;
+}
+
+/* بطاقات الدروس */
+.lesson-card {
+  @apply bg-white p-4 rounded-lg border border-gray-200 hover:border-primary/50 transition-colors;
+}
+
+/* تأثيرات حركية */
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* تحسينات للهواتف */
+@media (max-width: 640px) {
+  .subject-grid {
+    @apply grid-cols-1;
+  }
+  
+  .subject-card {
+    @apply p-4;
+  }
+}
+
+/* تأثيرات التركيز */
+.focus-visible {
+  @apply ring-2 ring-offset-2 ring-primary/50 outline-none;
+}
+
+/* شريط التمرير المخصص */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-100 rounded-full;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-300 rounded-full hover:bg-gray-400;
+}
+
+/* تحسينات النماذج */
+.input-field {
+  @apply w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-transparent transition-colors;
+}
+
+/* رسائل التنبيه */
+.alert {
+  @apply p-4 rounded-lg mb-4 text-sm;
+}
+
+.alert-success {
+  @apply bg-green-50 text-green-800;
+}
+
+.alert-warning {
+  @apply bg-yellow-50 text-yellow-800;
+}
+
+.alert-error {
+  @apply bg-red-50 text-red-800;
+}

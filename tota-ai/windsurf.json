@@ -1,0 +1,14 @@
+{
+  "name": "tota-ai",
+  "framework": "next",
+  "build": {
+    "command": "npm run build",
+    "directory": ".next"
+  },
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/$1"
+    }
+  ]
+}
