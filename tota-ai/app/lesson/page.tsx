@@ -250,7 +250,7 @@ function LessonPage() {
       {/* عرض الدرس */}
       <div className="bg-white/80 rounded-2xl shadow-xl border-2 border-accent/30 p-4 mb-8 flex flex-col md:flex-row gap-6 items-center">
         <div className="w-full md:w-1/2 bg-gradient-to-br from-sky-100 to-pink-100 rounded-2xl p-8 flex flex-col items-center justify-center text-center border-4 border-dashed border-sky-300">
-            <img src="/tota-emoji.png" alt="شخصية توتا" className="w-32 h-32 mb-4 animate-bounce" />
+            <img src={`${process.env.NEXT_PUBLIC_BASE_URL}/tota-emoji.png`} alt="شخصية توتا" className="w-32 h-32 mb-4 animate-bounce" />
             <h3 className="text-2xl font-bold text-primary mb-2">درس توتا التفاعلي قادم قريبًا!</h3>
             <p className="text-secondary font-medium">نحن نعمل بجد لتحضير تجربة تعليمية فريدة من نوعها. ترقبوا!</p>
           </div>
@@ -268,7 +268,7 @@ function LessonPage() {
           </p>
         </div>
         <img
-          src="/tota-emoji.png"
+          src={`${process.env.NEXT_PUBLIC_BASE_URL}/tota-emoji.png`}
           alt="توتا تشرح"
           className="absolute -top-24 left-1/2 -translate-x-1/2 w-32 h-32 animate-bounce"
         />

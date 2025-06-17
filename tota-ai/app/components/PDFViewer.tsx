@@ -61,6 +61,11 @@ export default function PDFViewer({ file, onDocumentLoadSuccess, className = '' 
     );
   }
 
+  let fileUrl = file;
+  if (typeof file === 'string' && !file.startsWith('http')) {
+    fileUrl = `${process.env.NEXT_PUBLIC_BASE_URL || ''}${file}`;
+  }
+
   return (
     <div className={`flex flex-col ${className}`}>
       <div className="flex justify-between items-center mb-4 p-2 bg-white rounded-lg shadow-sm">
@@ -137,7 +142,7 @@ export default function PDFViewer({ file, onDocumentLoadSuccess, className = '' 
         style={{ minHeight: '500px' }}
       >
         <Document
-          file={`${process.env.NEXT_PUBLIC_BASE_URL}${file}`}
+          file={fileUrl}
           onLoadSuccess={onDocumentLoadSuccessWrapper}
           loading={
             <div className="flex items-center justify-center h-full">

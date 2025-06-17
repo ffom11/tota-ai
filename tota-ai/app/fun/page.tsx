@@ -6,7 +6,7 @@ const emojis = [
   { label: "متحمس", icon: "🤩" },
   { label: "مستغرب", icon: "😮" },
   { label: "حزين", icon: "😢" },
-  { label: "توتا", icon: "/tota.png" },
+  { label: "توتا", icon: `${process.env.NEXT_PUBLIC_BASE_URL}/tota.png` },
 ];
 
 export default function FunPage() {
@@ -29,7 +29,7 @@ export default function FunPage() {
   return (
     <main className="flex flex-col items-center justify-center min-h-screen p-4 relative overflow-hidden" style={{background: 'linear-gradient(135deg, #B8E7FF 0%, #FFE7C2 100%)'}}>
       {/* خلفية طفولية متحركة */}
-      <img src="/kids-bg-1.png" alt="خلفية أطفال" className="absolute inset-0 w-full h-full object-cover opacity-70 animate-pulse-slow -z-10" style={{pointerEvents:'none'}} />
+      <img src={`${process.env.NEXT_PUBLIC_BASE_URL}/kids-bg-1.png`} alt="خلفية أطفال" className="absolute inset-0 w-full h-full object-cover opacity-70 animate-pulse-slow -z-10" style={{pointerEvents:'none'}} />
       <div className="bg-white/90 rounded-3xl shadow-kids-strong p-6 w-full max-w-xs md:max-w-md flex flex-col items-center border-4 border-primary/20 backdrop-blur-md">
         <h2 className="text-3xl md:text-4xl font-extrabold text-accent mb-3 text-center flex items-center gap-2 font-cartoon">
           <span className="inline-block align-middle">
@@ -58,7 +58,7 @@ export default function FunPage() {
         <div className="mt-4 flex flex-col items-center">
           <span className="text-lg md:text-xl font-bold text-primary mb-1">شخصية توتا:</span>
           <div className="relative">
-            <img src="/tota.png" alt="توتا" width={120} height={120} className={`rounded-full border-4 border-accent bg-peach shadow-kids-strong ${selected!==null?"animate-bounce-fast":"animate-bounce"} cursor-pointer`} onClick={()=>handleSelect(4)} />
+            <img src={`${process.env.NEXT_PUBLIC_BASE_URL}/tota.png`} alt="توتا" width={120} height={120} className={`rounded-full border-4 border-accent bg-peach shadow-kids-strong ${selected!==null?"animate-bounce-fast":"animate-bounce"} cursor-pointer`} onClick={()=>handleSelect(4)} />
             <span className="absolute -top-4 -right-4 text-3xl animate-pulse">✨</span>
             {/* رسالة تشجيعية عند اختيار شعور */}
             {selected!==null && !showTotaMsg && (
