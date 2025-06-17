@@ -13,8 +13,7 @@ jobs:
       - run: npm run build
       - name: Deploy to Windsurf
         run: |
-          curl -X POST \
+          curl -X POST "https://api.windsurf.build/api/v1/deployments" \
             -H "Authorization: Bearer ${{ secrets.WINDSURF_API_KEY }}" \
             -H "Content-Type: application/json" \
-            -d '{"projectId": "${{ secrets.WINDSURF_PROJECT_ID }}"}' \
-            https://api.windsurf.com/deploy
+            -d "{\"project_id\": \"${{ secrets.WINDSURF_PROJECT_ID }}\", \"source\": \"github\", \"commit_sha\": \"${{ github.sha }}\"}"
