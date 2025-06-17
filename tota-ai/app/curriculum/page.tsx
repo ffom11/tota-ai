@@ -267,7 +267,7 @@ const CurriculumContent = () => {
               
               <div className="flex flex-wrap gap-4 mb-4">
                 {lesson.pdfUrl && (
-                  <Button onClick={() => openPdf(lesson.pdfUrl, lesson.title)}>عرض الكتاب المدرسي</Button>
+                  <Button onClick={() => openPdf(`${process.env.NEXT_PUBLIC_BASE_URL}/pdfs/${lesson.id}.pdf`, lesson.title)}>عرض الكتاب المدرسي</Button>
                 )}
                 
                 {lesson.videoUrl && (

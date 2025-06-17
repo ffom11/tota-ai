@@ -72,7 +72,7 @@ export default function PDFModal({ isOpen, onClose, pdfUrl, title = 'عرض ال
         
         <div className="flex-1 overflow-hidden">
           <PDFViewer 
-            file={pdfUrl} 
+            file={`${process.env.NEXT_PUBLIC_BASE_URL}${pdfUrl}`} 
             className="h-full"
             onDocumentLoadSuccess={(numPages) => {
               console.log(`تم تحميل ${numPages} صفحات`);

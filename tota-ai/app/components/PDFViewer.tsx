@@ -137,7 +137,7 @@ export default function PDFViewer({ file, onDocumentLoadSuccess, className = '' 
         style={{ minHeight: '500px' }}
       >
         <Document
-          file={file}
+          file={`${process.env.NEXT_PUBLIC_BASE_URL}${file}`}
           onLoadSuccess={onDocumentLoadSuccessWrapper}
           loading={
             <div className="flex items-center justify-center h-full">
