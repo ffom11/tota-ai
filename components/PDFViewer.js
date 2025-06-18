@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { FaBook, FaQuestionCircle, FaPlayCircle } from 'react-icons/fa';
 
 export default function PDFViewer() {
   const [book, setBook] = useState(null);
@@ -10,6 +11,10 @@ export default function PDFViewer() {
   const [sortOrder, setSortOrder] = useState('asc');
   const [showQuestions, setShowQuestions] = useState(false);
   const [currentLesson, setCurrentLesson] = useState(null);
+  const [term, setTerm] = useState('');
+  const [terms, setTerms] = useState([]);
+  const [lesson, setLesson] = useState('');
+  const [lessons, setLessons] = useState([]);
 
   const stages = [
     { value: 'الابتدائية', grades: ['الصف الأول', 'الصف الثاني', 'الصف الثالث', 'الصف الرابع', 'الصف الخامس', 'الصف السادس'] },
@@ -18,11 +23,11 @@ export default function PDFViewer() {
   ];
 
   const subjects = ['الرياضيات', 'العلوم', 'اللغة العربية', 'اللغة الإنجليزية', 'التربية الإسلامية', 'الاجتماعيات'];
-  
+
   useEffect(() => {
     setOrigin(window.location.origin);
   }, []);
-  
+
   useEffect(() => {
     const selectedStage = stages.find(s => s.value === stage);
     if (selectedStage) {
@@ -36,7 +41,17 @@ export default function PDFViewer() {
   useEffect(() => {
     // يمكن إضافة منطق لتصفية المواد حسب الصف إذا لزم الأمر
   }, [grade]);
-  
+
+  useEffect(() => {
+    // يمكن إضافة منطق لتحديث الفصول حسب المادة إذا لزم الأمر
+    setTerms([]);
+  }, [subject]);
+
+  useEffect(() => {
+    // يمكن إضافة منطق لتحديث الدروس حسب الفصل إذا لزم الأمر
+    setLessons([]);
+  }, [term]);
+
   const curriculumBooks = [
     // المرحلة الابتدائية
     { id: 1, title: 'الرياضيات الصف الأول', path: '/books/الابتدائية/الصف الأول/الرياضيات.pdf', stage: 'الابتدائية', grade: 'الصف الأول', subject: 'الرياضيات' },
@@ -107,12 +122,32 @@ export default function PDFViewer() {
     setSubject('');
   };
 
+  const handleSubjectChange = (e) => {
+    setSubject(e.target.value);
+  };
+
+  const handleTermChange = (e) => {
+    setTerm(e.target.value);
+  };
+
+  const handleLessonChange = (e) => {
+    setLesson(e.target.value);
+  };
+
+  const handleExplainLesson = () => {
+    // يمكن إضافة منطق لشرح الدرس هنا
+  };
+
+  const handleInteractiveQuestions = () => {
+    // يمكن إضافة منطق لأسئلة تفاعلية هنا
+  };
+
   return (
     <div className="pdf-viewer">
       <h2 className="text-2xl font-bold mb-4">المناهج السعودية</h2>
       
-      {/* فلاتر الاختيار */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+      {/* فلاتر الاختيار المتتالية */}
+      <div className="flex flex-col space-y-4 mb-6">
         <div>
           <label className="block mb-1">المرحلة</label>
           <select 
@@ -120,57 +155,97 @@ export default function PDFViewer() {
             value={stage} 
             onChange={handleStageChange}
           >
-            <option value="">جميع المراحل</option>
+            <option value="">اختر المرحلة</option>
             {stages.map(stage => (
               <option key={stage.value} value={stage.value}>{stage.value}</option>
             ))}
           </select>
         </div>
         
-        <div>
-          <label className="block mb-1">الصف</label>
-          <select 
-            className="w-full p-2 border rounded"
-            value={grade} 
-            onChange={handleGradeChange}
-          >
-            <option value="">جميع الصفوف</option>
-            {grades.map(grade => (
-              <option key={grade} value={grade}>{grade}</option>
-            ))}
-          </select>
-        </div>
+        {stage && (
+          <div>
+            <label className="block mb-1">الصف</label>
+            <select 
+              className="w-full p-2 border rounded"
+              value={grade} 
+              onChange={handleGradeChange}
+            >
+              <option value="">اختر الصف</option>
+              {grades.map(grade => (
+                <option key={grade} value={grade}>{grade}</option>
+              ))}
+            </select>
+          </div>
+        )}
         
-        <div>
-          <label className="block mb-1">المادة</label>
-          <select 
-            className="w-full p-2 border rounded"
-            value={subject} 
-            onChange={(e) => setSubject(e.target.value)}
-          >
-            <option value="">جميع المواد</option>
-            {subjects.map(subject => (
-              <option key={subject} value={subject}>{subject}</option>
-            ))}
-          </select>
-        </div>
+        {grade && (
+          <div>
+            <label className="block mb-1">المادة</label>
+            <select 
+              className="w-full p-2 border rounded"
+              value={subject} 
+              onChange={handleSubjectChange}
+            >
+              <option value="">اختر المادة</option>
+              {subjects.map(subject => (
+                <option key={subject} value={subject}>{subject}</option>
+              ))}
+            </select>
+          </div>
+        )}
+        
+        {subject && (
+          <div>
+            <label className="block mb-1">الفصل</label>
+            <select 
+              className="w-full p-2 border rounded"
+              value={term} 
+              onChange={handleTermChange}
+            >
+              <option value="">اختر الفصل</option>
+              {terms.map(term => (
+                <option key={term} value={term}>{term}</option>
+              ))}
+            </select>
+          </div>
+        )}
+        
+        {term && (
+          <div>
+            <label className="block mb-1">الدرس</label>
+            <select 
+              className="w-full p-2 border rounded"
+              value={lesson} 
+              onChange={handleLessonChange}
+            >
+              <option value="">اختر الدرس</option>
+              {lessons.map(lesson => (
+                <option key={lesson.id} value={lesson.id}>{lesson.title}</option>
+              ))}
+            </select>
+          </div>
+        )}
       </div>
       
-      {/* أزرار الترتيب */}
-      <div className="sorting">
-        <button 
-          onClick={() => setSortOrder('asc')}
-          className={sortOrder === 'asc' ? 'active' : ''}
-        >
-          <i className="fas fa-sort-alpha-down"></i> تصاعدي
-        </button>
-        <button 
-          onClick={() => setSortOrder('desc')}
-          className={sortOrder === 'desc' ? 'active' : ''}
-        >
-          <i className="fas fa-sort-alpha-up"></i> تنازلي
-        </button>
-      </div>
+      {/* أيقونات التفاعل */}
+      {lesson && (
+        <div className="flex space-x-4 mb-6">
+          <button 
+            className="flex items-center px-4 py-2 bg-blue-500 text-white rounded"
+            onClick={handleExplainLesson}
+          >
+            <FaPlayCircle className="mr-2" />
+            شرح الدرس
+          </button>
+          <button 
+            className="flex items-center px-4 py-2 bg-green-500 text-white rounded"
+            onClick={handleInteractiveQuestions}
+          >
+            <FaQuestionCircle className="mr-2" />
+            أسئلة تفاعلية
+          </button>
+        </div>
+      )}
       
       {/* قائمة الكتب */}
       <div className="books-list">
