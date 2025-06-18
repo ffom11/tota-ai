@@ -12,8 +12,11 @@ jobs:
       - run: npm install
       - run: npm run build
       - name: Deploy to Windsurf
+        env:
+          WINDSURF_API_KEY: ${{ secrets.WINDSURF_API_KEY }}
+          WINDSURF_PROJECT_ID: ${{ secrets.WINDSURF_PROJECT_ID }}
         run: |
           curl -X POST "https://api.windsurf.build/api/v1/deployments" \
-            -H "Authorization: Bearer ${{ secrets.WINDSURF_API_KEY }}" \
+            -H "Authorization: Bearer $WINDSURF_API_KEY" \
             -H "Content-Type: application/json" \
-            -d "{\"project_id\": \"${{ secrets.WINDSURF_PROJECT_ID }}\", \"source\": \"github\", \"commit_sha\": \"${{ github.sha }}\"}"
+            -d "{\"project_id\": \"$WINDSURF_PROJECT_ID\", \"source\": \"github\", \"commit_sha\": \"${{ github.sha }}\"}"
