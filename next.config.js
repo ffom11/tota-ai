@@ -1,0 +1,34 @@
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  reactStrictMode: true,
+  assetPrefix: '/',
+  async redirects() {
+    return [
+      {
+        source: '/',
+        destination: '/home',
+        permanent: true,
+      },
+      {
+        source: '/curriculum',
+        destination: '/curriculum',
+        permanent: true,
+      }
+    ]
+  },
+  async headers() {
+    return [
+      {
+        source: '/(.*)',
+        headers: [
+          {
+            key: 'Content-Security-Policy',
+            value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.gstatic.com https://docs.google.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https://docs.google.com; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://api.openai.com; frame-src https://docs.google.com https://drive.google.com;"
+          }
+        ]
+      }
+    ]
+  }
+}
+
+module.exports = nextConfig

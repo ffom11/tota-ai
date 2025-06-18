@@ -1,0 +1,13 @@
+{
+  "name": "توتا التعليمي",
+  "short_name": "توتا",
+  "start_url": "/",
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "/images/tota-avatar.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
+}

@@ -22,3 +22,19 @@
 - Next.js
 - React
 - دعم اللغة العربية (RTL)
+
+# دليل إدارة موقع توتا التعليمي
+
+## كيفية التحديث:
+1. أجر التعديلات على الكود
+2. ادفع التغييرات لفرع `main` في GitHub
+3. سيتولى Netlify النشر التلقائي خلال 2 دقيقة
+
+## لوحة التحكم:
+- [Netlify Dashboard](https://app.netlify.com/sites/tota-ai-2024)
+- [GitHub Repo](https://github.com/ffom11/tota-ai)
+
+## روابط الموقع:
+- [الصفحة الرئيسية](https://tota-ai-2024.windsurf.build)
+- [عرض المناهج](https://tota-ai-2024.windsurf.build/curriculum)
+- [الأسئلة التفاعلية](https://tota-ai-2024.windsurf.build/chat)

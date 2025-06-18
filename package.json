@@ -5,6 +5,12 @@
     "next": "^15.3.3"
   },
   "scripts": {
-    "dev": "next dev"
+    "dev": "next dev",
+    "test": "jest",
+    "build": "next build"
+  },
+  "devDependencies": {
+    "eslint": "9.29.0",
+    "eslint-config-next": "15.3.3"
   }
 }
