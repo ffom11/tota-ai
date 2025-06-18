@@ -5,26 +5,31 @@ on:
     branches: [main]
 
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
-      
-      - name: Setup Node
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-      
-      - name: Install Dependencies
+
+      - name: Install dependencies
         run: npm install
-      
-      - name: Build
+
+      - name: Build project
         run: npm run build
-      
+
       - name: Deploy to Netlify
-        uses: netlify/actions/cli@master
+        uses: nwtgck/actions-netlify@v2
         with:
-          args: deploy --dir=.next --prod
+          publish-dir: './out'
+          production-branch: main
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          deploy-message: "Deploy from GitHub Actions"
         env:
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
