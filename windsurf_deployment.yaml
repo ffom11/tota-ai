@@ -2,14 +2,5 @@
 # This is an auto-generated file used to store your app deployment configuration. Do not modify.
 # The ID of the project (different from project name) on the provider's system. This is populated as a way to update existing deployments.
 project_id: bbaaa84c-ff04-4d17-bef0-b3006d174d9e
-deployment:
-  framework: nextjs
-  build_command: npm run build
-  output_directory: .next
-  environment:
-    - name: NODE_ENV
-      value: production
-  github:
-    repo: ffom11/tota-ai
-    branch: main
-    auto_deploy: true
+# The framework of the web application (examples: nextjs, react, vue, etc.)
+framework: nextjs
