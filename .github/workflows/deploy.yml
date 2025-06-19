@@ -10,12 +10,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
-      
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build project
+        run: npm run build
+
       - name: Deploy to Windsurf
         run: |
           curl -X POST \
             -H "Authorization: Bearer ${{ secrets.WINDSURF_API_KEY }}" \
-            -H "Content-Type: application/json" \
-            -d '{"project_id": "6ed92d77-6036-4eca-a8d8-e2a8f7ac0a9a"}' \
-            https://api.windsurf.ai/v1/deploy
+            -F "files=@.next" \
+            https://api.windsurf.xyz/deploy?project_id=tota-ai
