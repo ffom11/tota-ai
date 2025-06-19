@@ -1,32 +1,40 @@
 import Head from 'next/head';
 import { useEffect } from 'react';
-import { initializeApp } from 'firebase/app';
-import { getAnalytics } from 'firebase/analytics';
-
-const firebaseConfig = {
-  apiKey: "AIzaSyAaswJ9ynTVjDZ5VqdTU7kCF-v8Dqtr6RE",
-  authDomain: "tota-97fb5.firebaseapp.com",
-  projectId: "tota-97fb5",
-  storageBucket: "tota-97fb5.firebasestorage.app",
-  messagingSenderId: "612923192933",
-  appId: "1:612923192933:web:1f646f3ab61fb3ffc9788c",
-  measurementId: "G-7BZKG6JW33"
-};
+import { initFirebase } from '../firebase';
 
 export default function App({ Component, pageProps }) {
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const app = initializeApp(firebaseConfig);
-      const analytics = getAnalytics(app);
+    // Initialize Firebase
+    const { app, analytics } = initFirebase();
+    
+    // Log Firebase initialization
+    if (app) {
+      console.log('Firebase initialized');
+      if (analytics) {
+        console.log('Analytics initialized');
+      }
     }
+
+    // Cleanup on unmount
+    return () => {
+      // Add any cleanup code here if needed
+    };
   }, []);
 
   return (
     <>
       <Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="Tota AI - منصة تعليمية تفاعلية للطلاب" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
       </Head>
       <Component {...pageProps} />
     </>
   )
+}
+
+// Enable React.StrictMode in development
+export function reportWebVitals(metric) {
+  // You can log performance metrics here
+  // console.log(metric);
 }

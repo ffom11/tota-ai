@@ -1,5 +1,5 @@
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
+import { initializeApp, getApps, getApp } from 'firebase/app';
+import { getAnalytics, isSupported } from 'firebase/analytics';
 
 const firebaseConfig = {
   apiKey: "AIzaSyAaswJ9ynTVjDZ5VqdTU7kCF-v8Dqtr6RE",
@@ -11,12 +11,29 @@ const firebaseConfig = {
   measurementId: "G-7BZKG6JW33"
 };
 
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+// Initialize Firebase
+const initFirebase = () => {
+  // Skip if running on server
+  if (typeof window === 'undefined') {
+    return { app: null, analytics: null };
+  }
 
-export const initFirebase = () => {
-  initializeApp(firebaseConfig);
-  getAnalytics();
+  // Initialize only once
+  const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
+  let analytics = null;
+
+  // Initialize Analytics if supported
+  isSupported()
+    .then((yes) => {
+      if (yes) {
+        analytics = getAnalytics(app);
+      }
+    })
+    .catch((error) => {
+      console.error('Firebase Analytics initialization error:', error);
+    });
+
+  return { app, analytics };
 };
 
-export { app, analytics };
+export { initFirebase };
