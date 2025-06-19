@@ -1,35 +1,21 @@
-name: Deploy to Netlify
+name: Deploy to Windsurf
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
 
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Build project
-        run: npm run build
-
-      - name: Deploy to Netlify
-        uses: nwtgck/actions-netlify@v2
-        with:
-          publish-dir: './out'
-          production-branch: main
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          deploy-message: "Deploy from GitHub Actions"
-        env:
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+      
+      - name: Deploy to Windsurf
+        run: |
+          curl -X POST \
+            -H "Authorization: Bearer ${{ secrets.WINDSURF_API_KEY }}" \
+            -H "Content-Type: application/json" \
+            -d '{"project_id": "6ed92d77-6036-4eca-a8d8-e2a8f7ac0a9a"}' \
+            https://api.windsurf.ai/v1/deploy

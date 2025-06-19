@@ -1,12 +1,12 @@
-import PDFViewer from '../components/PDFViewer';
-import AskTotaAI from '../components/AskTotaAI';
+import { useState } from 'react';
+import Layout from '../components/Layout';
 
 export default function Home() {
+  const [activeTab, setActiveTab] = useState('الصفوف');
+  
   return (
-    <div className="container">
-      <h1>مرحبًا في توتا الذكاء الاصطناعي</h1>
-      <PDFViewer />
-      <AskTotaAI />
-    </div>
+    <Layout activeTab={activeTab} setActiveTab={setActiveTab}>
+      {/* محتوى الصفحة الرئيسية */}
+    </Layout>
   );
 }

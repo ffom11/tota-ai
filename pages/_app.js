@@ -1,6 +1,12 @@
 import Head from 'next/head';
+import { useEffect } from 'react';
+import { app, analytics } from '../firebase';
 
 export default function App({ Component, pageProps }) {
+  useEffect(() => {
+    // تهيئة Firebase هنا
+  }, []);
+
   return (
     <>
       <Head>
