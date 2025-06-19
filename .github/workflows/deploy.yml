@@ -24,8 +24,8 @@ jobs:
         run: npm run build
 
       - name: Deploy to Windsurf
-        run: | # eslint-disable-line
+        run: |
           curl -X POST \
-            -H "Authorization: Bearer ${{ secrets.WINDSURF_API_KEY }}" \
+            -H "Authorization: Bearer ${{ secrets.WINDSURF_TOKEN }}" \
             -F "files=@.next" \
             https://api.windsurf.xyz/deploy?project_id=tota-ai
