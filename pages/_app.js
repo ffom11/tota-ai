@@ -1,10 +1,10 @@
 import Head from 'next/head';
 import { useEffect } from 'react';
-import { app, analytics } from '../firebase';
+import { initFirebase } from '../firebase';
 
 export default function App({ Component, pageProps }) {
   useEffect(() => {
-    // تهيئة Firebase هنا
+    initFirebase();
   }, []);
 
   return (

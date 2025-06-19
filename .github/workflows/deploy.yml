@@ -29,3 +29,5 @@ jobs:
             -H "Authorization: Bearer ${{ secrets.WINDSURF_API_KEY }}" \
             -F "files=@.next" \
             https://api.windsurf.xyz/deploy?project_id=tota-ai
+        env:
+          WINDSURF_API_KEY: ${{ secrets.WINDSURF_API_KEY }}
