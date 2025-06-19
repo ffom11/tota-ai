@@ -36,7 +36,7 @@ export default function PDFViewer() {
     } else {
       setGrades([]);
     }
-  }, [stage]);
+  }, [stage, stages]); // أضف stages هنا
 
   useEffect(() => {
     // يمكن إضافة منطق لتصفية المواد حسب الصف إذا لزم الأمر
